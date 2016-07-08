@@ -1,0 +1,11 @@
+{
+  "project": {
+    "name": "client",
+    "window": {
+      "isCenter": true,
+      "isResizable": true,
+      "width": 800,
+      "height": 600
+    }
+  }
+}
