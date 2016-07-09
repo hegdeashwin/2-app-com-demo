@@ -6,8 +6,6 @@
 const electron = require('electron');
 const config = require('./configs');
 
-const connection = require('./api/connection');
-
 const app = electron.app;
 
 /**

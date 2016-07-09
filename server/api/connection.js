@@ -2,6 +2,7 @@
 
 const http = require('http');
 const io = require('socket.io');
+// const {ipcMain} = require('electron');
 
 const hostname = '127.0.0.1';
 const port = 3000;
@@ -14,12 +15,19 @@ server.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
 
-socket.on('connection', function(socket) {
+socket.on('connection', (socket) => {
+  let _clientInfo = {};
+
   console.log("Client " + socket.id + " is connected");
 
-  socket.emit('acknowledge', {
-    "status": true,
-    "msg": "Hello " + socket.id
-  });
-  
+  _clientInfo[socket.id] = true;
+
+  let node = document.createElement("li");
+  let textnode = document.createTextNode(Object.keys(_clientInfo) + " is connected.");
+  node.appendChild(textnode);
+
+  let DOMClientList = document.getElementById("client-list");
+  DOMClientList.appendChild(node);
+  DOMClientList.className = 'bg-success status-connected';
+
 });
